@@ -1,0 +1,28 @@
+{
+  "name": "go-ahead-whole-sale",
+  "version": "1.0.0",
+  "description": "go ahead whole sale a  sales management project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "go-ahead-whole-sale"
+  },
+  "keywords": [
+    "sales",
+    "management",
+    "nodejs",
+    "expressjs",
+    "project"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "mongoose": "^7.3.1",
+    "nodemon": "^2.0.22"
+  }
+}
