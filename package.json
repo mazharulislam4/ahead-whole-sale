@@ -5,7 +5,11 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
+<<<<<<< HEAD
     "dev": "nodemon server.js",
+=======
+    "dev": "node index.js",
+>>>>>>> origin/master
     "test": "test.js"
   },
   "repository": {
@@ -25,6 +29,7 @@
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+<<<<<<< HEAD
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "helmet": "^7.0.0",
@@ -36,5 +41,16 @@
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.22",
     "winston": "^3.9.0"
+=======
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.3.1",
+    "winston": "^3.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+>>>>>>> origin/master
   }
 }
