@@ -1,26 +1,24 @@
 import { model, Schema } from "mongoose";
-import { emailValidator } from "../../utils/utils";
-
-
+import { emailValidator } from "../../utils/utils.js";
 
 const schema = {
   fullName: {
     type: String,
-    maxLength: 30,
-    minLength: 5,
+    minLength: [5, "Minimum 5 characters needed!"],
+    maxLength: [30, "Maximum 30 characters allowed!"],
     required: true,
     trim: true,
   },
   username: {
     type: String,
-    minLength: 5,
-    maxLength: 16,
+    minLength: [5, "Minimum 5 characters needed!"],
+    maxLength: [16, "Maximum 16 characters allowed!"],
     required: true,
   },
   email: {
     type: String,
-    maxLength: 80,
-    minLength: 5,
+    minLength: [5, "Minimum 5 characters needed!"],
+    maxLength: [80, "Maximum 80 characters allowed!"],
     required: true,
     trim: true,
     validate: {
@@ -32,8 +30,8 @@ const schema = {
   },
   phone: {
     type: String,
-    maxLength:14,
-    minLength: 11,
+    minLength: [11, "Minimum 11 characters needed!"],
+    maxLength: [14, "Maximum 14 characters allowed!"],
     required: true,
   },
   role: {
@@ -41,11 +39,17 @@ const schema = {
     enum: ["admin", "manager"],
     default: "manager",
   },
+  password: {
+    type: String,
+    minLength: [8, "Minimum 8 characters needed!"],
+    // maxLength: 30,
+    required: true,
+  },
 };
 
 const userSchema = new Schema(schema, { timestamps: true });
 
-userSchema.index({ username: 'text' }, { default_language: 'english' });
+userSchema.index({ username: "text" }, { default_language: "english" });
 
 const User = model("User", userSchema);
 
