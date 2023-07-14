@@ -28,6 +28,7 @@ config.cookie = {
 
 
 config.global = {
+  SaltRounds: process.env.SaltRounds|| 10,
   secretKey: process.env.SECRET_KEY || '',
   baseURL: process.env.BASE_URL && process.env.PORT ? `${process.env.BASE_URL}:${process.env.PORT}` : 'https://localhost:5000',
 //   email: process.env.EMAIL || null,
