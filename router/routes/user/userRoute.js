@@ -1,11 +1,10 @@
 import { Router as router } from "express";
+import { cCreateUser } from "../../../controller/userController/userController.js";
 
 const  userRouter  =  router();
 
 // create user 
-userRouter.get('/create_user' ,  (req, res , next)=>{
-res.send({msg:'from user route'})
-}  )
+userRouter.post('/create_user' , cCreateUser)
 // update user 
 
 

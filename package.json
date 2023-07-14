@@ -5,11 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-<<<<<<< HEAD
     "dev": "nodemon  server.js",
-=======
     "dev": "nodemon server.js",
->>>>>>> bb6b5477a374db74bf8502ae1bd04aa69c033dd2
     "test": "test.js"
   },
   "repository": {

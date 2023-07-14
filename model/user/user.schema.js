@@ -36,6 +36,12 @@ const schema = {
     minLength: 11,
     required: true,
   },
+  password:{
+ type: String,
+ minLength: 8,
+ maxLength: 255,
+ required: true 
+  },
   role: {
     type: String,
     enum: ["admin", "manager"],
