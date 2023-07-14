@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { emailValidator } from "../../utils/utils";
+import { emailValidator } from "../../utils/utils.js";
 
 
 
