@@ -32,9 +32,21 @@ export const updateUserService = async (payload) => {
   });
 };
 
-
 // delete user
 export const deleteUserService = async (payload) => {
   const { username } = payload;
   return await User.findOneAndDelete({ username: username });
+};
+
+// find single user
+export const findSingleUserService = async (payload) => {
+  const { username } = payload;
+
+  return await User.find({ username: username });
+};
+
+// find all user
+
+export const findAllUserService = async () => {
+  return await User.find();
 };

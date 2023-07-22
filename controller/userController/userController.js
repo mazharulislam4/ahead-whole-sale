@@ -2,6 +2,8 @@ import {
   createUserService,
   updateUserService,
   deleteUserService,
+  findSingleUserService,
+  findAllUserService,
 } from "../../service/userService/userS.js";
 import User from "../../model/user/user.schema.js";
 import bcrypt from "bcrypt";
@@ -132,6 +134,68 @@ export const cDeleteUser = async (req, res, _next) => {
     return res
       .status(200)
       .json({ data: user, error: null, message: "user deleted successfully!" });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ data: null, error: { message: "server error !!!" } });
+  }
+};
+
+// find single user controller
+export const findSingleUserC = async (req, res, _next) => {
+  try {
+    const username = req.params.username;
+
+    // username empty validation
+    if (!username) {
+      return res
+        .status(400)
+        .json({ data: null, error: { message: "username is empty" } });
+    }
+    // if payload pass validation
+    const user = await findSingleUserService({ username });
+    // if database faild to find single user then retrun errror
+    if (!user) {
+      return res
+        .status(400)
+        .json({ data: null, error: { message: "username is not valid !" } });
+    }
+    //  return response data
+    return res
+      .status(200)
+      .json({ data: user, error: null, message: "user find successfully!" });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ data: null, error: { message: "server error !!!" } });
+  }
+};
+
+
+// find all user controller 
+export const findAllUserC = async (req, res, _next) => {
+  try {
+    const AllUser = await findAllUserService();
+
+    // if database faild to find  user then retrun errror
+    if (!AllUser) {
+      return res
+        .status(400)
+        .json({
+          data: null,
+          error: { message: "There are problem for find user" },
+        });
+    }
+    //  return response data
+    return res
+      .status(200)
+      .json({
+        data: AllUser,
+        error: null,
+        message: "All user find successfully!",
+      });
   } catch (err) {
     console.log(err);
     return res

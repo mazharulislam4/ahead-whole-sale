@@ -1,7 +1,9 @@
 import {
   createCustomerService,
   updateCustomerService,
-  deleteCustomerService
+  deleteCustomerService,
+  findAllCustomerService,
+  findSingleCustomerService
 } from "../../service/customerService/customerS.js";
 import Customer from "../../model/customer/customer.schema.js";
 import bcrypt from "bcrypt";
@@ -128,6 +130,69 @@ export const cDeleteCustomer = async (req, res, _next) => {
     return res
       .status(200)
       .json({ data: customer, error: null, message: "customer deleted successfully!" });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ data: null, error: { message: "server error !!!" } });
+  }
+};
+
+
+// find single customer controller
+export const findSingleCustomerC = async (req, res, _next) => {
+  try {
+    const companyName = req.params.companyName;
+
+    // companyName empty validation
+    if (!companyName) {
+      return res
+        .status(400)
+        .json({ data: null, error: { message: "companyName is empty" } });
+    }
+    // if payload pass validation
+    const customer = await findSingleCustomerService({ companyName });
+    // if database faild to find single customer then retrun errror
+    if (!customer) {
+      return res
+        .status(400)
+        .json({ data: null, error: { message: "CompanyName is not valid !" } });
+    }
+    //  return response data
+    return res
+      .status(200)
+      .json({ data: customer, error: null, message: "customer find successfully!" });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ data: null, error: { message: "server error !!!" } });
+  }
+};
+
+
+// find all customer controller 
+export const findAllCustomerC = async (req, res, _next) => {
+  try {
+    const customers = await findAllCustomerC();
+
+    // if database faild to find  product then retrun errror
+    if (!customers) {
+      return res
+        .status(400)
+        .json({
+          data: null,
+          error: { message: "There are problem for find customers" },
+        });
+    }
+    //  return response data
+    return res
+      .status(200)
+      .json({
+        data: customers,
+        error: null,
+        message: "All customers find successfully!",
+      });
   } catch (err) {
     console.log(err);
     return res

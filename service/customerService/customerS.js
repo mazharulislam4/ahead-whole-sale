@@ -35,3 +35,14 @@ export const deleteCustomerService = async (payload) => {
   const { companyName } = payload;
   return await Customer.findOneAndDelete({ companyName: companyName });
 };
+
+// find signle Customer
+export const findSingleCustomerService = async (payload) => {
+  const { companyName } = payload;
+  return await Customer.find({ companyName: companyName });
+};
+
+// find all Customer
+export const findAllCustomerService = async () => {
+  return await Customer.find();
+};

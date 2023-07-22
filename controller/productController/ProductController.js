@@ -2,11 +2,13 @@ import {
   CreateProductService,
   updateProductService,
   deleteProductService,
+  findAllProductService,
+  findSingleProductService
 } from "../../service/productService/productS.js";
 
 import Product from "../../model/product/product.schema.js";
 
-// create product
+// create product controller
 export const cCreateProduct = async (req, res, _next) => {
   try {
     const {
@@ -84,7 +86,7 @@ export const cCreateProduct = async (req, res, _next) => {
   }
 };
 
-// update product
+// update product controller
 
 export const cUpdateProduct = async (req, res, _next) => {
   try {
@@ -126,7 +128,7 @@ export const cUpdateProduct = async (req, res, _next) => {
   }
 };
 
-// delete prodcut
+// delete prodcut controller 
 
 export const cDeleteProduct = async (req, res, _next) => {
   try {
@@ -154,6 +156,70 @@ export const cDeleteProduct = async (req, res, _next) => {
       error: null,
       message: "product deleted successfully!",
     });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ data: null, error: { message: "server error !!!" } });
+  }
+};
+
+
+
+// find single product controller
+export const findSingleProductC = async (req, res, _next) => {
+  try {
+    const productName = req.params.productName;
+
+    // productName empty validation
+    if (!productName) {
+      return res
+        .status(400)
+        .json({ data: null, error: { message: "productName is empty" } });
+    }
+    // if payload pass validation
+    const product = await findSingleProductService({ productName });
+    // if database faild to find single product then retrun errror
+    if (!product) {
+      return res
+        .status(400)
+        .json({ data: null, error: { message: "productName is not valid !" } });
+    }
+    //  return response data
+    return res
+      .status(200)
+      .json({ data: product, error: null, message: "Product find successfully!" });
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(500)
+      .json({ data: null, error: { message: "server error !!!" } });
+  }
+};
+
+
+// find all Product controller 
+export const findAllProductC = async (req, res, _next) => {
+  try {
+    const products = await findAllProductService();
+
+    // if database faild to find  product then retrun errror
+    if (!products) {
+      return res
+        .status(400)
+        .json({
+          data: null,
+          error: { message: "There are problem for find products" },
+        });
+    }
+    //  return response data
+    return res
+      .status(200)
+      .json({
+        data: products,
+        error: null,
+        message: "All products find successfully!",
+      });
   } catch (err) {
     console.log(err);
     return res

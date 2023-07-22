@@ -1,14 +1,26 @@
 import { Router as router } from "express";
-import {cCreateCustomer, cUpdateCustomer, cDeleteCustomer} from "../../../controller/customerController/customerController.js"
+import {
+  cCreateCustomer,
+  cUpdateCustomer,
+  cDeleteCustomer,
+  findAllCustomerC,
+  findSingleCustomerC,
+} from "../../../controller/customerController/customerController.js";
 
-const  customerRouter  =  router();
+const customerRouter = router();
 
-// create customer  
-customerRouter.post('/create_customer' , cCreateCustomer)
+// create customer
+customerRouter.post("/create_customer", cCreateCustomer);
 // update customer
-customerRouter.put("/update_customer/:companyName", cUpdateCustomer)
+customerRouter.put("/update_customer/:companyName", cUpdateCustomer);
 
-// delete customer 
-customerRouter.delete("/delete_customer/:companyName", cDeleteCustomer)
+// delete customer
+customerRouter.delete("/delete_customer/:companyName", cDeleteCustomer);
 
-export default  customerRouter;
+// find single customer
+customerRouter.get("/find_customer/:companyName", findSingleCustomerC);
+
+// find all customers
+customerRouter.get("/find_customers", findAllCustomerC);
+
+export default customerRouter;

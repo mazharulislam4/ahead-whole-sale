@@ -51,3 +51,14 @@ export const deleteProductService = async (payload) => {
   const { productName } = payload;
   return await Product.findOneAndDelete({ productName: productName });
 };
+
+// find signle product
+export const findSingleProductService = async (payload) => {
+  const { productName } = payload;
+  return await Product.find({ productName: productName });
+};
+
+// find all product
+export const findAllProductService = async () => {
+  return await Product.find();
+};
