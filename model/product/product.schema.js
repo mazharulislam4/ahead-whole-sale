@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const schema = {
   productName: {
     type: String,
-    minLength: [7, "Minimum 7 characters needed!"],
+    minLength: [6, "Minimum 7 characters needed!"],
     maxLength: [255, "Maximum 255 characters allowed!"],
     required: true,
     trim: true,
